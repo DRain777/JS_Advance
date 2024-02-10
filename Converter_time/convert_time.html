@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milliseconds Converter</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #converter-container {
+      text-align: center;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      width: 200px;
+    }
+
+    button {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div id="converter-container">
+  <h2>Milliseconds Converter</h2>
+  <label for="inputMilliseconds">Enter milliseconds:</label>
+  <input type="number" id="inputMilliseconds" placeholder="Enter milliseconds">
+
+  <button onclick="convertToMinutesAndSeconds()">Convert to Minutes and Seconds</button>
+  <button onclick="convertToMilliseconds()">Convert to Milliseconds</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  function convertToMinutesAndSeconds() {
+    const inputMilliseconds = document.getElementById('inputMilliseconds').value;
+
+    if (!isNaN(inputMilliseconds) && inputMilliseconds >= 0) {
+      const totalSeconds = Math.floor(inputMilliseconds / 1000);
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+
+      document.getElementById('result').innerText = `Result: ${minutes} minutes and ${seconds} seconds`;
+    } else {
+      document.getElementById('result').innerText = 'Invalid input. Please enter a non-negative number.';
+    }
+  }
+
+  function convertToMilliseconds() {
+    const inputMinutes = document.getElementById('inputMilliseconds').value;
+
+    if (!isNaN(inputMinutes) && inputMinutes >= 0) {
+      const totalMilliseconds = inputMinutes * 60 * 1000;
+
+      document.getElementById('result').innerText = `Result: ${totalMilliseconds} milliseconds`;
+    } else {
+      document.getElementById('result').innerText = 'Invalid input. Please enter a non-negative number.';
+    }
+  }
+</script>
+
+</body>
+</html>
